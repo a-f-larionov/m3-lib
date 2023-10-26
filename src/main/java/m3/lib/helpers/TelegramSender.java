@@ -1,4 +1,4 @@
-package m3.lib.common.helpers;
+package m3.lib.helpers;
 
 import java.io.IOException;
 import java.net.URLEncoder;
