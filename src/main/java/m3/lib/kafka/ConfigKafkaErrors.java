@@ -13,8 +13,6 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.listener.KafkaListenerErrorHandler;
 import org.springframework.kafka.listener.ListenerExecutionFailedException;
 import org.springframework.messaging.handler.annotation.support.MethodArgumentNotValidException;
-import org.springframework.validation.Validator;
-import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 @Slf4j
 @Configuration
