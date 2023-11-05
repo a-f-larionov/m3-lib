@@ -15,6 +15,10 @@ repositories {
     mavenCentral()
 }
 
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
 dependencies {
 
     implementation 'org.springframework:spring-context:6.0.12'
