@@ -46,4 +46,8 @@ public interface UsersRepository extends CrudRepository<UserEntity, Long> {
     @Modifying
     @Query(value = "UPDATE users SET fullRecoveryTime = ?2 WHERE id = ?1", nativeQuery = true)
     void updateHealth(Long id, Long fullRecoveryTime);
+
+    @Modifying
+    @Query(value = "UPDATE users SET nextPointId = ?2 WHERE id = ?1", nativeQuery = true)
+    void updateNextPoint(Long userId, Long pointId);
 }
