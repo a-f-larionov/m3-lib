@@ -18,7 +18,7 @@ import java.util.Map;
 import static org.apache.kafka.clients.consumer.ConsumerConfig.*;
 
 @Configuration
-public class ConsumeConfig {
+public class ConsumerConfig {
 
     @Value("${spring.kafka.bootstrap-servers}")
     private String bootstrapAddress;
@@ -34,7 +34,7 @@ public class ConsumeConfig {
                 BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress,
                 KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class,
                 VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class,
-                GROUP_ID_CONFIG, 2,
+                GROUP_ID_CONFIG, "group_1",
                 JsonDeserializer.TRUSTED_PACKAGES, trustedPackages),
 
                 new StringDeserializer(),
