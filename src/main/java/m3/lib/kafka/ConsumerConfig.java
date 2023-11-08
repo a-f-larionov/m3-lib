@@ -24,6 +24,8 @@ public class ConsumerConfig {
     private String bootstrapAddress;
     @Value("${spring.kafka.consumer.trusted_packages}")
     private String trustedPackages;
+    @Value("${spring.kafka.topicName}")
+    private String topicName;
 
     @Autowired
     private KafkaTemplate<String, Object> kafkaTemplate;
@@ -35,6 +37,7 @@ public class ConsumerConfig {
                 KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class,
                 VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class,
                 GROUP_ID_CONFIG, "group_1",
+                CLIENT_ID_CONFIG, topicName,
                 JsonDeserializer.TRUSTED_PACKAGES, trustedPackages),
 
                 new StringDeserializer(),
