@@ -1,10 +1,10 @@
 package m3.lib.kafka;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import m3.lib.commons.ErrorCodes;
 import m3.lib.dto.rq.UserIdRqDto;
 import m3.lib.dto.rs.ErrorRsDto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.KafkaListenerConfigurer;
@@ -14,19 +14,21 @@ import org.springframework.kafka.listener.KafkaListenerErrorHandler;
 import org.springframework.kafka.listener.ListenerExecutionFailedException;
 import org.springframework.messaging.handler.annotation.support.MethodArgumentNotValidException;
 
+import java.util.Objects;
+
 @Slf4j
 @Configuration
+@AllArgsConstructor
 public class ConfigKafkaErrors implements KafkaListenerConfigurer {
 
-    @Autowired
-    private KafkaTemplate kafkaTemplate;
+    private final KafkaTemplate<String, Object> kafkaTemplate;
 
 //    @Autowired
 //    private Validator validator;
 
     @Override
     public void configureKafkaListeners(KafkaListenerEndpointRegistrar registrar) {
-    //    registrar.setValidator(this.validator);
+        //    registrar.setValidator(this.validator);
     }
 
     @Bean
@@ -53,10 +55,10 @@ public class ConfigKafkaErrors implements KafkaListenerConfigurer {
 
     private static String extractErrorMessage(ListenerExecutionFailedException e, String errorMsg) {
         if (!(e.getCause() instanceof MethodArgumentNotValidException)) {
-           return "Не известная ошибка!";
+            return "Не известная ошибка!";
         } else {
 
-            var firstError = ((MethodArgumentNotValidException) e.getCause()).getBindingResult()
+            var firstError = Objects.requireNonNull(((MethodArgumentNotValidException) e.getCause()).getBindingResult())
                     .getAllErrors()
                     .get(0);
             return firstError.getDefaultMessage();
