@@ -53,10 +53,6 @@ public class TelegramSender {
         if (message.contains("Endpoint handler details:")) {
             message = message.substring(0, message.indexOf("Endpoint handler details:"));
         }
-        message = message.replaceAll("([a-z])[a-z]+\\.([a-z])[a-z]+\\.", "$1.$2.");
-//        message = message.replace("org.springframework.kafka.listener.", "o.s.k.l.");
-//        message = message.replace("org.springframework.kafka.", "o.s.k.");
-//        message = message.replace("org.springframework.", "o.s.");
         return message;
     }
 }

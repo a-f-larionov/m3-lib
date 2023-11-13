@@ -9,7 +9,6 @@ import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.kafka.listener.CommonLoggingErrorHandler;
 import org.springframework.kafka.support.serializer.ErrorHandlingDeserializer;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 
@@ -26,6 +25,10 @@ public class ConsumerConfig {
     private String trustedPackages;
     @Value("${spring.kafka.topicName}")
     private String topicName;
+    @Value("${alerter.telegram.token}")
+    private String teleToken;
+    @Value("${alerter.telegram.chatId}")
+    private String chatId;
 
     @Autowired
     private KafkaTemplate<String, Object> kafkaTemplate;
@@ -51,7 +54,7 @@ public class ConsumerConfig {
         var factory = new ConcurrentKafkaListenerContainerFactory<String, Object>();
 
         factory.setConsumerFactory(consumerFactory());
-        factory.setCommonErrorHandler(new CommonLoggingErrorHandler());
+        factory.setCommonErrorHandler(new CustomCommmonErrorHandler(teleToken, chatId));
         factory.setReplyTemplate(kafkaTemplate);
 
         return factory;
