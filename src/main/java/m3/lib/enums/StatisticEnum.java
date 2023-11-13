@@ -9,7 +9,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum StatisticEnum {
 
-    ID_AUTHORIZE_STANDALONE(101, "Зашел Стандале"),
+    ID_AUTHORIZE_STANDALONE(101, "Зашел Стандалон"),
     ID_AUTHORIZE_VK(100, "Зашел через ВК"),
     ID_BUY_HEALTH(700, "Купил жизни"),
     ID_BUY_HUMMER(400, "Купил молоток"),

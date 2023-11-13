@@ -7,7 +7,7 @@ import java.nio.charset.StandardCharsets;
 public class TelegramSender {
 
     private static TelegramSender instance;
-    private static Object mutex = new Object();
+    private static final Object mutex = new Object();
 
     public static TelegramSender getInstance() {
         TelegramSender result = instance;
@@ -27,7 +27,7 @@ public class TelegramSender {
     }
 
     public void sendToTelegram(String message, String token, String chatId) {
-
+        message = prepareMessage(message);
         var endpoint = "https://api.telegram.org/bot"
                 + token
                 + "/sendMessage" +
@@ -46,5 +46,17 @@ public class TelegramSender {
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private static String prepareMessage(String message) {
+        // move to to some other place
+        if (message.contains("Endpoint handler details:")) {
+            message = message.substring(0, message.indexOf("Endpoint handler details:"));
+        }
+        message = message.replaceAll("([a-z])[a-z]+\\.([a-z])[a-z]+\\.", "$1.$2.");
+//        message = message.replace("org.springframework.kafka.listener.", "o.s.k.l.");
+//        message = message.replace("org.springframework.kafka.", "o.s.k.");
+//        message = message.replace("org.springframework.", "o.s.");
+        return message;
     }
 }
