@@ -9,6 +9,7 @@ import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.listener.CommonLoggingErrorHandler;
 import org.springframework.kafka.support.serializer.ErrorHandlingDeserializer;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 
@@ -54,9 +55,10 @@ public class ConsumerConfig {
         var factory = new ConcurrentKafkaListenerContainerFactory<String, Object>();
 
         factory.setConsumerFactory(consumerFactory());
-        factory.setCommonErrorHandler(new CustomCommmonErrorHandler(teleToken, chatId));
+        factory.setCommonErrorHandler(new CommonLoggingErrorHandler());
         factory.setReplyTemplate(kafkaTemplate);
 
         return factory;
     }
+
 }

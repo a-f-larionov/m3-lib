@@ -8,7 +8,6 @@ import org.springframework.data.repository.CrudRepository;
 public interface UserStuffRepository extends CrudRepository<UsersStuffEntity, Long> {
 
     @Modifying
-    @Query(value = "INSERT INTO users_points(userId, pointId, score) VALUES (?1, ?2, ?3)" +
-            "ON DUPLICATE KEY UPDATE score = ?3", nativeQuery = true)
-    void updateUsersPoints(Long userId, Long pointId, Long score);
+    @Query(value = "UPDATE users_stuff SET ?1 = ?1 + ?3 WHERE userId = ?2", nativeQuery = true)
+    void incrementOne(String filedName, Long userId, Long quantity);
 }

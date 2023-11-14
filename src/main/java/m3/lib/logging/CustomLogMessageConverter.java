@@ -18,8 +18,7 @@ public class CustomLogMessageConverter extends ClassicConverter {
                 msg += extractErrorMessage(event.getThrowableProxy());
             }
         }
-        msg = compactNamespaces(msg);
-        return msg;
+        return compactNamespaces(msg);
     }
 
     private static String compactNamespaces(String msg) {
@@ -34,6 +33,7 @@ public class CustomLogMessageConverter extends ClassicConverter {
 
     private static List<String> recursiveReadMessages(IThrowableProxy e, List<String> list) {
         if (e != null && e.getMessage() != null) {
+            list.add("      " + e.getClassName());
             list.add(e.getMessage());
             recursiveReadMessages(e.getCause(), list);
         }

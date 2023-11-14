@@ -27,7 +27,6 @@ public class TelegramSender {
     }
 
     public void sendToTelegram(String message, String token, String chatId) {
-        message = prepareMessage(message);
         var endpoint = "https://api.telegram.org/bot"
                 + token
                 + "/sendMessage" +
@@ -46,13 +45,5 @@ public class TelegramSender {
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    private static String prepareMessage(String message) {
-        // move to to some other place
-        if (message.contains("Endpoint handler details:")) {
-            message = message.substring(0, message.indexOf("Endpoint handler details:"));
-        }
-        return message;
     }
 }

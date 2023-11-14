@@ -16,16 +16,16 @@ public class UsersStuffEntity {
     private Integer id;
 
     @NotNull
+    @Column(name = "goldQty", nullable = false)
+    private Integer goldQty;
+
+    @NotNull
     @Column(name = "hummerQty", nullable = false)
     private Integer hummerQty;
 
     @NotNull
     @Column(name = "shuffleQty", nullable = false)
     private Integer shuffleQty;
-
-    @NotNull
-    @Column(name = "goldQty", nullable = false)
-    private Integer goldQty;
 
     @NotNull
     @Column(name = "lightningQty", nullable = false)
