@@ -7,7 +7,7 @@ import java.nio.charset.StandardCharsets;
 public class TelegramSender {
 
     private static TelegramSender instance;
-    private static Object mutex = new Object();
+    private static final Object mutex = new Object();
 
     public static TelegramSender getInstance() {
         TelegramSender result = instance;
@@ -27,7 +27,6 @@ public class TelegramSender {
     }
 
     public void sendToTelegram(String message, String token, String chatId) {
-
         var endpoint = "https://api.telegram.org/bot"
                 + token
                 + "/sendMessage" +

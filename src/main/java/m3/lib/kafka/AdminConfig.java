@@ -23,6 +23,7 @@ public class AdminConfig {
     public KafkaAdmin kafkaAdmin() {
         Map<String, Object> configs = new HashMap<>();
         configs.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
+        configs.put(AdminClientConfig.CLIENT_ID_CONFIG, topicName + "_admin");
         return new KafkaAdmin(configs);
     }
 

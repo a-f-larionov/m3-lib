@@ -5,8 +5,8 @@ import lombok.Getter;
 @Getter
 public enum ErrorCodes {
 
-    VALIDATE_ERROR(1, "Ошибка валидации"),
-    AUTH_FAILED(2,"Ошибка авторизации");
+    LISTENER_ERROR(1, "Не возможно обработать сообщение"),
+    AUTH_FAILED(2, "Ошибка авторизации");
 
     private final Integer code;
     private final String message;

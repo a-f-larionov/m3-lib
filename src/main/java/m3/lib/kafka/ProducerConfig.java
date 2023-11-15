@@ -25,7 +25,7 @@ public class ProducerConfig {
         return new KafkaTemplate<>(producerFactory());
     }
 
-    public ProducerFactory<String, Object> producerFactory() {
+    private ProducerFactory<String, Object> producerFactory() {
         Map<String, Object> cfg = new HashMap<>();
         cfg.put(BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         cfg.put(KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
