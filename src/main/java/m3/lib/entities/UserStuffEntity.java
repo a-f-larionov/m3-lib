@@ -9,26 +9,26 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "users_stuff")
-public class UsersStuffEntity {
+public class UserStuffEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "userId", nullable = false)
-    private Integer id;
+    @Column(name = "`userId`", nullable = false)
+    private Long id;
 
     @NotNull
     @Column(name = "goldQty", nullable = false)
-    private Integer goldQty;
+    private Long goldQty;
 
     @NotNull
     @Column(name = "hummerQty", nullable = false)
-    private Integer hummerQty;
+    private Long hummerQty;
 
     @NotNull
     @Column(name = "shuffleQty", nullable = false)
-    private Integer shuffleQty;
+    private Long shuffleQty;
 
     @NotNull
     @Column(name = "lightningQty", nullable = false)
-    private Integer lightningQty;
+    private Long lightningQty;
 
 }

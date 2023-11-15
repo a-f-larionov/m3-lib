@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "users_points")
-public class UsersPointEntity {
+public class UserPointEntity {
     @EmbeddedId
     private UsersPointId id;
 

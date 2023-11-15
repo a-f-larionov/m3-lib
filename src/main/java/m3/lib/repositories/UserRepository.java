@@ -11,7 +11,7 @@ import org.springframework.lang.NonNull;
 import java.util.List;
 import java.util.Optional;
 
-public interface UsersRepository extends CrudRepository<UserEntity, Long> {
+public interface UserRepository extends CrudRepository<UserEntity, Long> {
 
     @Override
     List<UserEntity> findAll();
@@ -46,6 +46,6 @@ public interface UsersRepository extends CrudRepository<UserEntity, Long> {
     void updateHealth(Long id, Long fullRecoveryTime);
 
     @Modifying
-    @Query(value = "UPDATE users SET nextPointId = ?2 WHERE id = ?1", nativeQuery = true)
-    void updateNextPoint(Long userId, Long pointId);
+    @Query(value = "UPDATE users SET nextPointId = ?2 WHERE id = ?1 AND nextPointId < ?2 ", nativeQuery = true)
+    void nextPointUp(Long userId, Long pointId);
 }
