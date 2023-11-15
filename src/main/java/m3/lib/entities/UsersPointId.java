@@ -16,11 +16,11 @@ public class UsersPointId implements Serializable {
     private static final long serialVersionUID = -675811616460046639L;
     @jakarta.validation.constraints.NotNull
     @Column(name = "userId", nullable = false)
-    private Integer userId;
+    private Long userId;
 
     @jakarta.validation.constraints.NotNull
     @Column(name = "pointId", nullable = false)
-    private Integer pointId;
+    private Long pointId;
 
     @Override
     public boolean equals(Object o) {
