@@ -1,12 +1,10 @@
 package m3.lib.logging.logback.appender;
 
 import ch.qos.logback.classic.spi.ILoggingEvent;
-import ch.qos.logback.classic.spi.LoggingEvent;
 import ch.qos.logback.core.AppenderBase;
 import ch.qos.logback.core.encoder.Encoder;
 import lombok.Setter;
 import m3.lib.helpers.TelegramSender;
-import m3.lib.kafka.KafkaErrorHandler;
 
 import java.nio.charset.StandardCharsets;
 
