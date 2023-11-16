@@ -24,4 +24,11 @@ public interface UserPointRepository extends CrudRepository<UserPointEntity, Lon
             "  AND score >= ?1 " +
             " ORDER BY score DESC", nativeQuery = true)
     Long getTopScoreUserPosition(Long score, Long pointId, List<Long> fids, Long userId);
+
+    @Query(value = "SELECT userId, pointId, score FROM " +
+            "users_points " +
+            "WHERE " +
+            " pointId IN( ?1 )" +
+            "AND userId IN ( ?2 )", nativeQuery = true)
+    List<UserPointEntity> getScores(List<Long> pids, List<Long> fids);
 }

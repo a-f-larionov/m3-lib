@@ -2,8 +2,7 @@ package m3.lib.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.Hibernate;
 
 import java.io.Serializable;
@@ -12,6 +11,9 @@ import java.util.Objects;
 @Getter
 @Setter
 @Embeddable
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class UsersPointId implements Serializable {
     private static final long serialVersionUID = -675811616460046639L;
     @jakarta.validation.constraints.NotNull

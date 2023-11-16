@@ -2,17 +2,19 @@ package m3.lib.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "users_stuff")
 public class UserStuffEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "`userId`", nullable = false)
+    @Column(name = "userId", nullable = false)
     private Long id;
 
     @NotNull
