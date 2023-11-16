@@ -14,7 +14,7 @@ public interface UserPointRepository extends CrudRepository<UserPointEntity, Lon
             "ON DUPLICATE KEY UPDATE score = ?3", nativeQuery = true)
     void updateUserPoint(Long userId, Long pointId, Long score);
 
-    @Query(value = "SELECT * FROM users_points WHERE pointId = ?1 ANd userId IN( ?2 )", nativeQuery = true)
+    @Query(value = "SELECT * FROM users_points WHERE pointId = ?1 ANd userId IN( ?2 ) ORDER BY score DESC LIMIT 3", nativeQuery = true)
     List<UserPointEntity> getTopScore(Long pointId, List<Long> fids);
 
     @Query(value = "SELECT COUNT(*) as pos " +
