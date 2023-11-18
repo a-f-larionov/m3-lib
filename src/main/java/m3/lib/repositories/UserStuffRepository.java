@@ -24,4 +24,10 @@ public interface UserStuffRepository extends CrudRepository<UserStuffEntity, Lon
     @Modifying
     @Query(value = "UPDATE users_stuff SET lightningQty = lightningQty + ?2 WHERE userId = ?1", nativeQuery = true)
     void incrementLightningQty(Long userId, Long quantity);
+
+    @Modifying
+    @Query(value = "INSERT INTO users_stuff " +
+            "(userId, goldQty, hummerQty, lightningQty, shuffleQty) " +
+            "VALUES (?1, 500, 2, 1, 1)", nativeQuery = true)
+    void creatUserStuff(Long userId);
 }
