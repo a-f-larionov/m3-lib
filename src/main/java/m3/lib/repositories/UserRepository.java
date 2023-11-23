@@ -2,16 +2,16 @@ package m3.lib.repositories;
 
 import m3.lib.entities.UserEntity;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.lang.NonNull;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface UserRepository extends CrudRepository<UserEntity, Long> {
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
     @Override
     List<UserEntity> findAll();

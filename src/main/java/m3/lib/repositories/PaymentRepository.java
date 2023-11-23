@@ -1,7 +1,7 @@
 package m3.lib.repositories;
 
 import m3.lib.entities.PaymentEntity;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PaymentRepository extends CrudRepository<PaymentEntity, Long> {
+public interface PaymentRepository extends JpaRepository<PaymentEntity, Long> {
 }
