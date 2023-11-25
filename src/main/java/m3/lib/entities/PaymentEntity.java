@@ -1,33 +1,35 @@
 package m3.lib.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "payments")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class PaymentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Integer id;
+    private Long id;
 
     @jakarta.validation.constraints.NotNull
     @Column(name = "time", nullable = false)
-    private Integer time;
+    private Long time;
 
     @jakarta.validation.constraints.NotNull
     @Column(name = "userId", nullable = false)
-    private Integer userId;
+    private Long userId;
 
     @jakarta.validation.constraints.NotNull
     @Column(name = "orderId", nullable = false)
-    private Integer orderId;
+    private Long orderId;
 
     @jakarta.validation.constraints.NotNull
     @Column(name = "itemPrice", nullable = false)
-    private Integer itemPrice;
+    private Long itemPrice;
 
 }
