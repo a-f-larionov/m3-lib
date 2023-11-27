@@ -36,16 +36,23 @@ public class ShopStore {
             buildProductDto(2L, 1500L, 9L, STUFF_LIGHTNING, "lightning-big.png")
     );
 
+    public static boolean goldProductByPriceExists(Long price) {
+        return gold.stream()
+                .anyMatch(
+                        product -> product.getPriceVotes().equals(price)
+                );
+    }
+
     public static ProductDto getGoldProductByPrice(Long price) {
         return gold.stream()
                 .filter(product -> product.getPriceVotes().equals(price))
                 .findAny()
-                .orElseThrow(() -> new RuntimeException("Product not found "));
+                .orElseThrow(() -> new RuntimeException("Product not found."));
     }
 
     public static ProductDto getProduct(Long index, List<ProductDto> products) {
         return products.stream()
-                .filter(i -> i.getIndex().equals(index))
+                .filter(p -> p.getIndex().equals(index))
                 .findAny()
                 .orElseThrow(() -> new RuntimeException("Product no found." +
                         " Requested index: " + index +
