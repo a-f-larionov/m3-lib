@@ -12,6 +12,10 @@ java {
     sourceCompatibility = JavaVersion.VERSION_17
 }
 
+bootJar {
+    enabled = false
+}
+
 repositories {
     mavenLocal()
     mavenCentral()
