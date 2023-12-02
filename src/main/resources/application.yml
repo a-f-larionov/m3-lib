@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:13306/junit_database
+    username: junit_user
+    password: junit_password
