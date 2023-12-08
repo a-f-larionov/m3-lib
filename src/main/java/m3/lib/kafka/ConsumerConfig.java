@@ -40,7 +40,7 @@ public class ConsumerConfig {
                 BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress,
                 KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class,
                 VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class,
-                GROUP_ID_CONFIG, "group_id_1",
+                GROUP_ID_CONFIG, "group_1",
                 CLIENT_ID_CONFIG, topicName,
                 JsonDeserializer.TRUSTED_PACKAGES, trustedPackages),
 
