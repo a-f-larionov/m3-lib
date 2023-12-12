@@ -7,16 +7,15 @@ import m3.lib.dto.rs.ErrorRsDto;
 import m3.lib.helpers.TelegramSender;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.kafka.listener.KafkaListenerErrorHandler;
 import org.springframework.kafka.listener.ListenerExecutionFailedException;
 import org.springframework.messaging.Message;
 import org.springframework.stereotype.Component;
 
 import static java.lang.String.format;
 
-@Component(value = "validationErrorHandler")
 @RequiredArgsConstructor
-public class KafkaErrorHandler implements KafkaListenerErrorHandler {
+@Component
+public class KafkaListenerErrorHandler implements org.springframework.kafka.listener.KafkaListenerErrorHandler {
 
     private final KafkaTemplate<String, Object> kafkaTemplate;
     @Value("${alerter.telegram.token}")

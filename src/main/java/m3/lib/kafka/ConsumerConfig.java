@@ -9,7 +9,7 @@ import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.kafka.listener.CommonLoggingErrorHandler;
+import org.springframework.kafka.listener.CommonErrorHandler;
 import org.springframework.kafka.support.serializer.ErrorHandlingDeserializer;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 
@@ -34,14 +34,19 @@ public class ConsumerConfig {
     @Autowired
     private KafkaTemplate<String, Object> kafkaTemplate;
 
+    @Autowired
+    private CommonErrorHandler commonErrorHandler;
+
     @Bean
     public ConsumerFactory<String, Object> consumerFactory() {
+        System.out.println("!!!!!ConsumerFactory" + bootstrapAddress);
         return new DefaultKafkaConsumerFactory<>(Map.of(
                 BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress,
                 KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class,
                 VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class,
                 GROUP_ID_CONFIG, "group_1",
                 CLIENT_ID_CONFIG, topicName,
+                AUTO_OFFSET_RESET_CONFIG, "earliest",
                 JsonDeserializer.TRUSTED_PACKAGES, trustedPackages),
 
                 new StringDeserializer(),
@@ -55,7 +60,7 @@ public class ConsumerConfig {
         var factory = new ConcurrentKafkaListenerContainerFactory<String, Object>();
 
         factory.setConsumerFactory(consumerFactory());
-        factory.setCommonErrorHandler(new CommonLoggingErrorHandler());
+        factory.setCommonErrorHandler(commonErrorHandler);
         factory.setReplyTemplate(kafkaTemplate);
 
         return factory;
