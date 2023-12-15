@@ -30,9 +30,9 @@ public class KafkaListenerConfigurer implements org.springframework.kafka.annota
 
             @Override
             public void validate(Object target, Errors errors) {
-                System.out.println("validate");
+                System.out.println("validate!" + target.toString());
                 validator.validate(target, errors);
-                System.out.println("validate");
+                System.out.println("validate!" + errors.toString());
             }
         });
     }
