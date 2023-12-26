@@ -34,8 +34,8 @@ public class ConsumerConfig {
     @Autowired
     private KafkaTemplate<String, Object> kafkaTemplate;
 
-    @Autowired
-    private CommonErrorHandler commonErrorHandler;
+//    @Autowired
+//    private CommonErrorHandler commonErrorHandler;
 
     @Bean
     public ConsumerFactory<String, Object> consumerFactory() {
@@ -60,7 +60,7 @@ public class ConsumerConfig {
         var factory = new ConcurrentKafkaListenerContainerFactory<String, Object>();
 
         factory.setConsumerFactory(consumerFactory());
-        factory.setCommonErrorHandler(commonErrorHandler);
+     //   factory.setCommonErrorHandler(commonErrorHandler);
         factory.setReplyTemplate(kafkaTemplate);
 
         return factory;
