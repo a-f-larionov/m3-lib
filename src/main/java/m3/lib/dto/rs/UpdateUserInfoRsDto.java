@@ -2,7 +2,6 @@ package m3.lib.dto.rs;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
-import m3.lib.dto.rs.UserIdRsDto;
 
 @SuperBuilder
 @Getter

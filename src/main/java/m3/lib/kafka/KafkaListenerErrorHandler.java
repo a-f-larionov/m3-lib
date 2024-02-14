@@ -26,8 +26,6 @@ public class KafkaListenerErrorHandler implements org.springframework.kafka.list
     @Override
     public Object handleError(Message<?> message, ListenerExecutionFailedException exception) {
 
-        System.out.println(message);
-
         var payload = message.getPayload();
         var userId = getUserIdFromPayLoad(payload);
         var payloadClassName = payload.getClass().getName();
@@ -38,17 +36,16 @@ public class KafkaListenerErrorHandler implements org.springframework.kafka.list
         if (userId != null) {
             sendToTopicClient(errorMsg, payloadClassName, userId);
         }
-        // sendToTelegamm
+        // essentially sendToTelegramm
         throw exception;
-        //return null;
-    }
-
-    private static String createErrorMessage(Object payload) {
-        return "\r\n\r\n--- PAYLOAD ---\r\n" + payload.toString().replace(", ", ",\r\n");
     }
 
     private void sendToTopicClient(String errorMsg, String payloadClassName, Long userId) {
         kafkaTemplate.send("topic-client", createErrorRsDto(errorMsg, payloadClassName, userId));
+    }
+
+    private static String createErrorMessage(Object payload) {
+        return "\r\n\r\n--- PAYLOAD ---\r\n" + payload.toString().replace(", ", ",\r\n");
     }
 
     private static ErrorRsDto createErrorRsDto(String errorMsg, String className, Long userId) {

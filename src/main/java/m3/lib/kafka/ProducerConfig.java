@@ -26,7 +26,6 @@ public class ProducerConfig {
     }
 
     private ProducerFactory<String, Object> producerFactory() {
-        System.out.println("!!!!!ProducerFactory" + bootstrapAddress);
         Map<String, Object> cfg = new HashMap<>();
         cfg.put(BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         cfg.put(KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
