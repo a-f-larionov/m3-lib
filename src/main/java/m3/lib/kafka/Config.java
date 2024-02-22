@@ -13,7 +13,6 @@ import org.springframework.kafka.support.serializer.JsonDeserializer;
 import java.util.Map;
 
 import static org.apache.kafka.clients.consumer.ConsumerConfig.*;
-import static org.apache.kafka.clients.consumer.ConsumerConfig.AUTO_OFFSET_RESET_CONFIG;
 
 @Configuration
 public class Config {
@@ -34,7 +33,6 @@ public class Config {
                 GROUP_ID_CONFIG, "group_1",
                 CLIENT_ID_CONFIG, topicName,
                 AUTO_OFFSET_RESET_CONFIG, "latest",
-
                 JsonDeserializer.TRUSTED_PACKAGES, trustedPackages),
                 new StringDeserializer(),
                 new ErrorHandlingDeserializer<>(new JsonDeserializer<>())
