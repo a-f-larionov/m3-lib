@@ -2,6 +2,7 @@ package m3.lib.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -16,11 +17,11 @@ import java.util.Objects;
 @AllArgsConstructor
 public class UsersPointId implements Serializable {
     private static final long serialVersionUID = -675811616460046639L;
-    @jakarta.validation.constraints.NotNull
+    @NotNull
     @Column(name = "userId", nullable = false)
     private Long userId;
 
-    @jakarta.validation.constraints.NotNull
+    @NotNull
     @Column(name = "pointId", nullable = false)
     private Long pointId;
 

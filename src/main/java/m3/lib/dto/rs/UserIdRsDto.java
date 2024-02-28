@@ -1,5 +1,6 @@
 package m3.lib.dto.rs;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -12,5 +13,6 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode
 @ToString
 public class UserIdRsDto {
+    @NotNull
     private Long userId;
 }

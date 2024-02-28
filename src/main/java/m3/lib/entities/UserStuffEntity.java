@@ -63,7 +63,7 @@ public class UserStuffEntity {
         this.shuffleQty = qty;
     }
 
-    public Long getQuantity(ObjectEnum objectId) {
+    public Long getQuantityByObject(ObjectEnum objectId) {
         switch (objectId) {
             case STUFF_HUMMER -> {
                 return getHummerQty();

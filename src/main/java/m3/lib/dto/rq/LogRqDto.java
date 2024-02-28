@@ -1,5 +1,7 @@
 package m3.lib.dto.rq;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import m3.lib.enums.ClientLogLevels;
@@ -9,11 +11,15 @@ import m3.lib.enums.ClientLogLevels;
 @AllArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode()
 @ToString(callSuper = true)
-public class LogRqDto extends UserIdRqDto {
+public class LogRqDto {
 
+    private Long userId;
+    @NotNull
     public ClientLogLevels level;
+    @NotEmpty
     public String message;
+    @NotNull
     public Boolean sendToTelegram;
 }

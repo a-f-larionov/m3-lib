@@ -20,6 +20,7 @@ public class CommonSenderImpl implements CommonSender {
         kafkaTemplate.send("topic-common", StatisticRqDto.builder()
                 .userId(userId)
                 .statId(statisticEnum)
+                .time(System.currentTimeMillis())
                 .paramA(paramA)
                 .paramB(paramB)
                 .build());

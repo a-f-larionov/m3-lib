@@ -1,6 +1,7 @@
 package m3.lib.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @NoArgsConstructor
@@ -17,12 +18,15 @@ public class UserEntity {
     private Long id;
 
     @Column(name = "socnetuserid")
+    @NotNull
     private Long socNetUserId;
 
     @Column(name = "socnettypeid")
+    @NotNull
     private Long socNetTypeId;
 
     @Column(name = "create_tm")
+    @NotNull
     private Long createTm;
 
     @Column(name = "login_tm")
@@ -32,9 +36,11 @@ public class UserEntity {
     private Long logoutTm;
 
     @Column(name = "nextpointid")
+    @NotNull
     private Long nextPointId;
 
     @Column(name = "fullrecoverytime")
+    @NotNull
     private Long fullRecoveryTime;
 }
 
