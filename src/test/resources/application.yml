@@ -1,13 +1,14 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:13306/junit_database
-    username: junit_user
-    password: junit_password
+    url: jdbc:mysql://localhost:13306/test
+    username: test
+    password: test
 
   kafka:
     topicName: 'test-topic'
     consumer:
       trusted_packages: 'm3.lib'
+    bootstrap-servers: kafka:9092
 
 alerter:
   telegram:

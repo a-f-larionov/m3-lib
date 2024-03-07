@@ -15,9 +15,9 @@ public class BaseDataJpaTest {
 
     static {
         mySQLContainer = new MySQLContainer<>(DockerImageName.parse("mysql:5.7"))
-                .withDatabaseName("junit_database")
-                .withUsername("junit_user")
-                .withPassword("junit_password")
+                .withDatabaseName("test")
+                .withUsername("test")
+                .withPassword("test")
                 .withReuse(true);
         mySQLContainer.addExposedPort(33306);
         mySQLContainer.start();
