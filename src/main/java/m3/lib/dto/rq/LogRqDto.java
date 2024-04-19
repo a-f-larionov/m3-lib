@@ -23,3 +23,4 @@ public class LogRqDto {
     @NotNull
     public Boolean sendToTelegram;
 }
+
