@@ -40,7 +40,7 @@ public class UserAgentRepositoryTest extends BaseDataJpaTest {
         userAgentRepository.save(entity);
 
         // then
-        final var data = jdbcTemplate.queryForMap("SELECT * FROM `user_agents`");
+        final var data = jdbcTemplate.queryForMap("SELECT * FROM user_agents");
         assertEquals(uid, Long.valueOf((Integer) data.get("uid")));
         assertEquals(agent, data.get("agent"));
     }

@@ -11,8 +11,8 @@ import m3.lib.enums.ClientLogLevels;
 @AllArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode()
-@ToString(callSuper = true)
+@EqualsAndHashCode
+@ToString
 public class LogRqDto {
 
     private Long userId;

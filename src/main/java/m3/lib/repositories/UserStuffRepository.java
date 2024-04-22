@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface UserStuffRepository extends JpaRepository<UserStuffEntity, Long> {
 
-    @Query(value = "SELECT * FROM users_stuff WHERE `userId` = ?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM users_stuff WHERE userId = ?1", nativeQuery = true)
     UserStuffEntity getByUserId(Long userId);
 
     @Modifying
@@ -17,7 +17,7 @@ public interface UserStuffRepository extends JpaRepository<UserStuffEntity, Long
     void creatUserStuff(Long userId);
 
     @Modifying
-    @Query(value = "UPDATE users_stuff SET `goldQty` = `goldQty` + ?2 WHERE `userId` = ?1", nativeQuery = true)
+    @Query(value = "UPDATE users_stuff SET goldQty = goldQty + ?2 WHERE userId = ?1", nativeQuery = true)
     void incrementGoldQty(Long userId, Long quantity);
 
     @Modifying

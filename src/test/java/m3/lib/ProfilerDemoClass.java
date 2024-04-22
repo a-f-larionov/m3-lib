@@ -3,7 +3,7 @@ package m3.lib;
 import org.springframework.stereotype.Component;
 
 
-@ProfileThis
+@ProfileMethods
 @Component
 public class ProfilerDemoClass {
 

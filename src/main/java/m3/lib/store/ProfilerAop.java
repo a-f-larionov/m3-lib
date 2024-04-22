@@ -16,18 +16,19 @@ public class ProfilerAop {
 
     public static Map<String, AtomicInteger> data = new HashMap<>();
 
-    @Pointcut("@within(m3.lib.ProfileThis)")
-    public void profileThis() {
+    //@todo @PrfileThis -> @ProfileMethods
+    @Pointcut("@within(m3.lib.ProfileMethods)")
+    public void profileMethods() {
     }
 
-    @Around("profileThis()")
+    @Around("profileMethods()")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
-        Object proceed = joinPoint.proceed();
+//        @todo test it. Object proceed = joinPoint.proceed();
         var methodName = joinPoint.getSignature().getName();
-
+        // @todo use profilerReporter.putOne();
         data.putIfAbsent(methodName, new AtomicInteger(0));
         data.get(methodName).incrementAndGet();
 
-        return proceed;
+        return joinPoint.proceed();
     }
 }
