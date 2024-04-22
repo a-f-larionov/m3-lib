@@ -16,7 +16,6 @@ public class ProfilerAop {
 
     public static Map<String, AtomicInteger> data = new HashMap<>();
 
-    //@todo @PrfileThis -> @ProfileMethods
     @Pointcut("@within(m3.lib.ProfileMethods)")
     public void profileMethods() {
     }
