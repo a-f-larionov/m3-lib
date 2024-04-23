@@ -14,7 +14,6 @@ import m3.lib.enums.ClientLogLevels;
 @EqualsAndHashCode
 @ToString
 public class LogRqDto {
-
     private Long userId;
     @NotNull
     public ClientLogLevels level;
