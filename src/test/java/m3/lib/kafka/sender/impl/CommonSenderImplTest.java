@@ -5,19 +5,24 @@ import m3.lib.enums.StatisticEnum;
 import m3.lib.kafka.sender.CommonSender;
 import org.assertj.core.data.Offset;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.kafka.core.KafkaTemplate;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 
+@ExtendWith(MockitoExtension.class)
 class CommonSenderImplTest {
-
-    KafkaTemplate kafkaTemplate = Mockito.mock(KafkaTemplate.class);
-
-    CommonSender commonSender = new CommonSenderImpl(kafkaTemplate);
+    @Mock
+    KafkaTemplate kafkaTemplate;
+    @InjectMocks
+    CommonSenderImpl commonSender;
 
     @Test
     @SuppressWarnings("unchecked")
@@ -32,7 +37,7 @@ class CommonSenderImplTest {
         commonSender.statistic(userId, statEnum, param1, param2);
 
         // then
-       var argumentCaptor = ArgumentCaptor.forClass(StatisticRqDto.class);
+        var argumentCaptor = ArgumentCaptor.forClass(StatisticRqDto.class);
 
         verify(kafkaTemplate)
                 .send(eq("topic-common"), argumentCaptor.capture());
