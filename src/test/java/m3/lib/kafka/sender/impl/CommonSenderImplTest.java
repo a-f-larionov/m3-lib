@@ -2,14 +2,13 @@ package m3.lib.kafka.sender.impl;
 
 import m3.lib.dto.rq.StatisticRqDto;
 import m3.lib.enums.StatisticEnum;
-import m3.lib.kafka.sender.CommonSender;
+import m3.lib.kafka.TopicNames;
 import org.assertj.core.data.Offset;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.kafka.core.KafkaTemplate;
 
@@ -40,7 +39,7 @@ class CommonSenderImplTest {
         var argumentCaptor = ArgumentCaptor.forClass(StatisticRqDto.class);
 
         verify(kafkaTemplate)
-                .send(eq("topic-common"), argumentCaptor.capture());
+                .send(eq(TopicNames.COMMON), argumentCaptor.capture());
 
         StatisticRqDto value = argumentCaptor.getValue();
 

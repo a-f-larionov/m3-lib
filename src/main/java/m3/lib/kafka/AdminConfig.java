@@ -16,19 +16,19 @@ public class AdminConfig {
 
     @Value("${spring.kafka.bootstrap-servers}")
     private String bootstrapAddress;
-    @Value("${spring.kafka.topicName}")
-    private String topicName;
+    @Value("${spring.application.name}")
+    private String appName;
 
     @Bean
     public KafkaAdmin kafkaAdmin() {
         Map<String, Object> configs = new HashMap<>();
         configs.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
-        configs.put(AdminClientConfig.CLIENT_ID_CONFIG, topicName + "_admin");
+        configs.put(AdminClientConfig.CLIENT_ID_CONFIG, appName + "_admin");
         return new KafkaAdmin(configs);
     }
 
     @Bean
     public NewTopic topicName() {
-        return new NewTopic(topicName, 1, (short) 1);
+        return new NewTopic(TopicNames.serviceTopics.get(appName), 1, (short) 1);
     }
 }

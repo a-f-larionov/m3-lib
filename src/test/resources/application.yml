@@ -5,7 +5,6 @@ spring:
     password: test
 
   kafka:
-    topicName: 'test-topic'
     consumer:
       trusted_packages: 'm3.lib'
     bootstrap-servers: kafka:9092

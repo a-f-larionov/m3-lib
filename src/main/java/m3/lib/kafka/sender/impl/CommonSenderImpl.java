@@ -5,6 +5,7 @@ import m3.lib.dto.rq.LogRqDto;
 import m3.lib.dto.rq.StatisticRqDto;
 import m3.lib.enums.ClientLogLevels;
 import m3.lib.enums.StatisticEnum;
+import m3.lib.kafka.TopicNames;
 import m3.lib.kafka.sender.CommonSender;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class CommonSenderImpl implements CommonSender {
 
     @Override
     public void statistic(Long userId, StatisticEnum statisticEnum, String paramA, String paramB) {
-        kafkaTemplate.send("topic-common", StatisticRqDto.builder()
+        kafkaTemplate.send(TopicNames.COMMON, StatisticRqDto.builder()
                 .userId(userId)
                 .statId(statisticEnum)
                 .time(System.currentTimeMillis())
@@ -28,7 +29,7 @@ public class CommonSenderImpl implements CommonSender {
 
     @Override
     public void log(Long userId, String message, ClientLogLevels level, boolean sendToTelegram) {
-        kafkaTemplate.send("topic-common", LogRqDto.builder()
+        kafkaTemplate.send(TopicNames.COMMON, LogRqDto.builder()
                 .level(level)
                 .userId(userId)
                 .message(message)

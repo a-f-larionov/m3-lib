@@ -41,7 +41,7 @@ public class KafkaListenerErrorHandler implements org.springframework.kafka.list
     }
 
     private void sendToTopicClient(String errorMsg, String payloadClassName, Long userId) {
-        kafkaTemplate.send("topic-client", createErrorRsDto(errorMsg, payloadClassName, userId));
+        kafkaTemplate.send(TopicNames.CLIENT, createErrorRsDto(errorMsg, payloadClassName, userId));
     }
 
     private static String createErrorMessage(Object payload) {

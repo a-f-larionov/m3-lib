@@ -16,13 +16,12 @@ import static org.apache.kafka.clients.consumer.ConsumerConfig.*;
 
 @Configuration
 public class Config {
-
+    @Value("${spring.application.name}")
+    private String appName;
     @Value("${spring.kafka.bootstrap-servers}")
     private String bootstrapAddress;
     @Value("${spring.kafka.consumer.trusted_packages}")
     private String trustedPackages;
-    @Value("${spring.kafka.topicName}")
-    private String topicName;
 
     @Bean
     public ConsumerFactory<String, Object> consumerFactory() {
@@ -31,7 +30,7 @@ public class Config {
                 KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class,
                 VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class,
                 GROUP_ID_CONFIG, "group_1",
-                CLIENT_ID_CONFIG, topicName,
+                CLIENT_ID_CONFIG, appName,
                 AUTO_OFFSET_RESET_CONFIG, "latest",
                 JsonDeserializer.TRUSTED_PACKAGES, trustedPackages),
                 new StringDeserializer(),
