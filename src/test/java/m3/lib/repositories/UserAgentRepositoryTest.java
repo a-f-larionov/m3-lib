@@ -31,7 +31,8 @@ public class UserAgentRepositoryTest extends BaseDataJpaTest {
         final var uid = 123L;
         final var agent = "user-agent-string2";
 
-        jdbcTemplate.update("DELETE FROM `user_agents`");
+        //@todo-b replace all sql to lower case
+        jdbcTemplate.update("delete from user_agents");
         final var entity = UserAgentEntity.builder()
                 .uid(uid)
                 .agent(agent)
@@ -41,7 +42,7 @@ public class UserAgentRepositoryTest extends BaseDataJpaTest {
 
         // then
         final var data = jdbcTemplate.queryForMap("SELECT * FROM user_agents");
-        assertEquals(uid, Long.valueOf((Integer) data.get("uid")));
+        assertEquals(uid, data.get("uid"));
         assertEquals(agent, data.get("agent"));
     }
 }
