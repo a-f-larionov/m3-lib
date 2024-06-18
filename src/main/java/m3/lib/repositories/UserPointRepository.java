@@ -11,7 +11,7 @@ public interface UserPointRepository extends JpaRepository<UserPointEntity, Long
 
     @Modifying
     @Query(value = "INSERT INTO users_points(userId, pointId, score) VALUES (?1, ?2, ?3)" +
-            "ON DUPLICATE KEY UPDATE score = ?3", nativeQuery = true)
+            "ON CONFLICT(userId, pointId) DO UPDATE SET score = ?3", nativeQuery = true)
     void updateUserPoint(Long userId, Long pointId, Long score);
 
     @Query(value = "SELECT * FROM users_points WHERE pointId = ?1 ANd userId IN( ?2 ) ORDER BY score DESC LIMIT 3", nativeQuery = true)
